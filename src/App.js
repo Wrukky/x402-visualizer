@@ -13,7 +13,7 @@ network: “OG Network”,
 networkColor: “#38bdf8”,
 from: “TEE Node”,
 to: “OG Blockchain”,
-description: “Before serving any requests, TEE nodes register on-chain via the TEE Registry smart contract. The blockchain verifies the AWS Nitro attestation, checks PCR values against approved code hashes, and binds the TLS certificate and signing key to the enclave — eliminating any single point of trust.”,
+description: “Before serving any requests, TEE nodes register on-chain via the TEE Registry smart contract. The blockchain verifies the AWS Nitro attestation, checks PCR values against approved code hashes, and binds the TLS certificate and signing key to the enclave  -  eliminating any single point of trust.”,
 data: {
 method: “registerTEEWithAttestation()”,
 attestation: “AWS Nitro attestation doc”,
@@ -35,7 +35,7 @@ network: “Base Sepolia”,
 networkColor: “#f59e0b”,
 from: “Your Wallet”,
 to: “Permit2 Contract”,
-description: “A one-time on-chain step on Base Sepolia. Your wallet approves a $OPG token allowance for Permit2 spending. The SDK calls ensure_opg_approval() which checks the current allowance — only submitting an ERC-20 approve transaction if it’s below the required amount. Gasless for repeat calls.”,
+description: “A one-time on-chain step on Base Sepolia. Your wallet approves a $OPG token allowance for Permit2 spending. The SDK calls ensure_opg_approval() which checks the current allowance  -  only submitting an ERC-20 approve transaction if it’s below the required amount. Gasless for repeat calls.”,
 data: {
 contract: “Permit2”,
 token: “$OPG (0x240b…987F)”,
@@ -57,7 +57,7 @@ network: “HTTP”,
 networkColor: “#a78bfa”,
 from: “Your App”,
 to: “OG Gateway”,
-description: “Your application sends a standard POST request to the OpenGradient LLM endpoint. The request looks identical to OpenAI’s API — same model, messages, and parameters. No SDK required; any HTTP client in any language works here.”,
+description: “Your application sends a standard POST request to the OpenGradient LLM endpoint. The request looks identical to OpenAI’s API  -  same model, messages, and parameters. No SDK required; any HTTP client in any language works here.”,
 data: {
 method: “POST /v1/chat/completions”,
 model: “openai/gpt-4.1-2025-04-14”,
@@ -79,7 +79,7 @@ network: “HTTP 402”,
 networkColor: “#f472b6”,
 from: “OG Gateway”,
 to: “Your App”,
-description: “The server responds with HTTP 402 — the web’s payment required status code. This is the x402 standard in action. The response headers contain payment requirements: the amount of $OPG needed, the chain ID (Base Sepolia), a payment ID, and an expiry timestamp.”,
+description: “The server responds with HTTP 402  -  the web’s payment required status code. This is the x402 standard in action. The response headers contain payment requirements: the amount of $OPG needed, the chain ID (Base Sepolia), a payment ID, and an expiry timestamp.”,
 data: {
 status: “402 Payment Required”,
 amount: “0.001 OPG”,
@@ -102,7 +102,7 @@ network: “Local”,
 networkColor: “#34d399”,
 from: “Your Wallet”,
 to: “Signed Payload”,
-description: “Your wallet creates a payment payload using the details from the 402 response and cryptographically signs it using your private key. This signature proves you authorized this exact payment — without revealing your private key. The SDK handles this automatically.”,
+description: “Your wallet creates a payment payload using the details from the 402 response and cryptographically signs it using your private key. This signature proves you authorized this exact payment  -  without revealing your private key. The SDK handles this automatically.”,
 data: {
 payment_id: “0x1234…abcd”,
 amount: “0.001”,
@@ -169,7 +169,7 @@ network: “OG Network”,
 networkColor: “#38bdf8”,
 from: “TEE Node”,
 to: “LLM Provider API”,
-description: “The verified request enters the Trusted Execution Environment. The TEE node routes your prompt to the third-party LLM provider (OpenAI, Anthropic, Google, xAI) through hardware-attested code. Intel TDX guarantees the routing code hasn’t been tampered with — your prompt stays private.”,
+description: “The verified request enters the Trusted Execution Environment. The TEE node routes your prompt to the third-party LLM provider (OpenAI, Anthropic, Google, xAI) through hardware-attested code. Intel TDX guarantees the routing code hasn’t been tampered with  -  your prompt stays private.”,
 data: {
 tee: “Intel TDX Enclave”,
 model: “openai/gpt-4.1-2025-04-14”,
@@ -213,7 +213,7 @@ network: “OG Network”,
 networkColor: “#38bdf8”,
 from: “TEE Node”,
 to: “OG Blockchain”,
-description: “The TEE attestation proof is posted to the OpenGradient blockchain. Validators verify the TEE signature against the on-chain registry, confirm the inference was executed in an approved enclave, and write an immutable record. Your inference is now cryptographically proven — forever auditable on the block explorer.”,
+description: “The TEE attestation proof is posted to the OpenGradient blockchain. Validators verify the TEE signature against the on-chain registry, confirm the inference was executed in an approved enclave, and write an immutable record. Your inference is now cryptographically proven  -  forever auditable on the block explorer.”,
 data: {
 mode: “SETTLE_BATCH”,
 proof: “TEE attestation + hashes”,
@@ -495,7 +495,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
         fontSize: 12, color: "#3a5570", maxWidth: 520, margin: "0 auto",
         lineHeight: 1.7, letterSpacing: "0.02em",
       }}>
-        A step-by-step animation of how OpenGradient processes every LLM inference —
+        A step-by-step animation of how OpenGradient processes every LLM inference  - 
         from HTTP request to cryptographic settlement.
       </p>
     </div>
@@ -532,7 +532,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
               fontSize: 8, color: isActive ? phase.color + "80" : "#1e3040",
               marginTop: 2, letterSpacing: "0.06em",
             }}>
-              STEPS {phase.steps.join("–")}
+              STEPS {phase.steps.join("-")}
             </div>
           </div>
         );
@@ -587,7 +587,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
     }}
       key={activeStep}
     >
-      {/* LEFT — Step detail */}
+      {/* LEFT  -  Step detail */}
       <div style={{
         background: "rgba(255,255,255,0.02)",
         border: `1px solid ${step.color}30`,
@@ -719,7 +719,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
         </div>
       </div>
 
-      {/* RIGHT — Data payload */}
+      {/* RIGHT  -  Data payload */}
       <div style={{
         background: "rgba(255,255,255,0.015)",
         border: "1px solid rgba(255,255,255,0.06)",
@@ -739,7 +739,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
           <span style={{
             fontSize: 9, color: "#2a3f55", letterSpacing: "0.1em", fontWeight: 700, marginLeft: 4,
           }}>
-            PAYLOAD — STEP {step.id}
+            PAYLOAD  -  STEP {step.id}
           </span>
           <div style={{
             marginLeft: "auto", width: 8, height: 8, borderRadius: "50%",
