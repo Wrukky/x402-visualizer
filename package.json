@@ -1,5 +1,5 @@
 {
-  "name": "x402-visualizer",
+  "name": "opengradient-universe",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -10,7 +10,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build"
-
   },
   "browserslist": {
     "production": [">0.2%", "not dead", "not op_mini all"],
