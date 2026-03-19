@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from “react”;
 
-// ─── FLOW STEPS ───────────────────────────────────────────────────────────────
+// — FLOW STEPS —————————————————————
 const STEPS = [
 {
 id: 1,
@@ -8,7 +8,7 @@ phase: “SETUP”,
 phaseColor: “#38bdf8”,
 label: “TEE Node Registration”,
 sublabel: “OpenGradient Network”,
-icon: “◈”,
+icon: “*”,
 network: “OG Network”,
 networkColor: “#38bdf8”,
 from: “TEE Node”,
@@ -30,7 +30,7 @@ phase: “SETUP”,
 phaseColor: “#38bdf8”,
 label: “Permit2 Approval”,
 sublabel: “Base Sepolia”,
-icon: “⊕”,
+icon: “(+)”,
 network: “Base Sepolia”,
 networkColor: “#f59e0b”,
 from: “Your Wallet”,
@@ -52,7 +52,7 @@ phase: “REQUEST”,
 phaseColor: “#a78bfa”,
 label: “Initial HTTP Request”,
 sublabel: “llm.opengradient.ai”,
-icon: “→”,
+icon: “->”,
 network: “HTTP”,
 networkColor: “#a78bfa”,
 from: “Your App”,
@@ -74,7 +74,7 @@ phase: “REQUEST”,
 phaseColor: “#a78bfa”,
 label: “402 Payment Required”,
 sublabel: “Payment Challenge”,
-icon: “⚡”,
+icon: “!”,
 network: “HTTP 402”,
 networkColor: “#f472b6”,
 from: “OG Gateway”,
@@ -97,7 +97,7 @@ phase: “PAYMENT”,
 phaseColor: “#34d399”,
 label: “Payment Signing”,
 sublabel: “Client-side”,
-icon: “✦”,
+icon: “*”,
 network: “Local”,
 networkColor: “#34d399”,
 from: “Your Wallet”,
@@ -120,7 +120,7 @@ phase: “PAYMENT”,
 phaseColor: “#34d399”,
 label: “Authenticated Request”,
 sublabel: “X-PAYMENT Header”,
-icon: “🔐”,
+icon: “[lock]”,
 network: “HTTP”,
 networkColor: “#a78bfa”,
 from: “Your App”,
@@ -141,8 +141,8 @@ id: 7,
 phase: “VERIFICATION”,
 phaseColor: “#fb923c”,
 label: “Payment Verification”,
-sublabel: “Facilitator · Base Sepolia”,
-icon: “◎”,
+sublabel: “Facilitator . Base Sepolia”,
+icon: “o”,
 network: “Base Sepolia”,
 networkColor: “#f59e0b”,
 from: “OG Gateway”,
@@ -153,7 +153,7 @@ facilitator: “0x339c…294f”,
 chain: “Base Sepolia”,
 action: “Verify signature + Permit2”,
 permit2: “0x000…Permit2”,
-status: “✓ VERIFIED”,
+status: “v VERIFIED”,
 },
 color: “#f59e0b”,
 glow: “rgba(245,158,11,0.3)”,
@@ -163,8 +163,8 @@ id: 8,
 phase: “INFERENCE”,
 phaseColor: “#00e5ff”,
 label: “TEE Inference Execution”,
-sublabel: “OG Network · Intel TDX”,
-icon: “⬡”,
+sublabel: “OG Network . Intel TDX”,
+icon: “O”,
 network: “OG Network”,
 networkColor: “#38bdf8”,
 from: “TEE Node”,
@@ -186,7 +186,7 @@ phase: “SETTLEMENT”,
 phaseColor: “#c084fc”,
 label: “Payment Settlement”,
 sublabel: “Base Sepolia”,
-icon: “⬡”,
+icon: “O”,
 network: “Base Sepolia”,
 networkColor: “#f59e0b”,
 from: “Facilitator”,
@@ -197,7 +197,7 @@ chain: “Base Sepolia (84532)”,
 token: “$OPG”,
 contract: “0x240b…987F”,
 tx_hash: “0x5678…cdef”,
-status: “✓ SETTLED”,
+status: “v SETTLED”,
 },
 color: “#c084fc”,
 glow: “rgba(192,132,252,0.3)”,
@@ -207,8 +207,8 @@ id: 10,
 phase: “SETTLEMENT”,
 phaseColor: “#c084fc”,
 label: “Proof Settlement”,
-sublabel: “OG Blockchain · Immutable”,
-icon: “✓”,
+sublabel: “OG Blockchain . Immutable”,
+icon: “v”,
 network: “OG Network”,
 networkColor: “#38bdf8”,
 from: “TEE Node”,
@@ -219,7 +219,7 @@ mode: “SETTLE_BATCH”,
 proof: “TEE attestation + hashes”,
 og_tx: “0x9abc…7654”,
 explorer: “explorer.opengradient.ai”,
-verified_by: “OG Validators ✓”,
+verified_by: “OG Validators v”,
 },
 color: “#34d399”,
 glow: “rgba(52,211,153,0.3)”,
@@ -235,7 +235,7 @@ const PHASES = [
 { id: “SETTLEMENT”, label: “Settlement”, color: “#c084fc”, steps: [9, 10] },
 ];
 
-// ─── ANIMATED BEAM ────────────────────────────────────────────────────────────
+// — ANIMATED BEAM ————————————————————
 function Beam({ active, color }) {
 return (
 <div style={{
@@ -254,7 +254,7 @@ borderRadius: 2,
 );
 }
 
-// ─── DATA ROW ─────────────────────────────────────────────────────────────────
+// — DATA ROW —————————————————————–
 function DataRow({ k, v, color }) {
 return (
 <div style={{
@@ -274,7 +274,7 @@ fontFamily: “‘DM Mono’, monospace”, wordBreak: “break-all”, lineHeig
 );
 }
 
-// ─── STEP NODE ────────────────────────────────────────────────────────────────
+// — STEP NODE ––––––––––––––––––––––––––––––––
 function StepNode({ step, isActive, isCompleted, onClick }) {
 const [hovered, setHovered] = useState(false);
 const active = isActive || hovered;
@@ -302,7 +302,7 @@ boxShadow: isActive ? `0 0 20px ${step.glow}` : “none”,
 position: “relative”, flexShrink: 0,
 }}>
 {isCompleted && !isActive ? (
-<span style={{ fontSize: 14, color: step.color + “80” }}>✓</span>
+<span style={{ fontSize: 14, color: step.color + “80” }}>v</span>
 ) : (
 <span style={{
 fontSize: 16, color: isActive ? step.color : “#3a5570”,
@@ -350,7 +350,7 @@ transition: “all 0.3s”,
 );
 }
 
-// ─── NETWORK BADGE ────────────────────────────────────────────────────────────
+// — NETWORK BADGE ————————————————————
 function NetworkBadge({ label, color }) {
 return (
 <span style={{
@@ -365,7 +365,7 @@ fontFamily: “‘DM Mono’, monospace”,
 );
 }
 
-// ─── MAIN APP ─────────────────────────────────────────────────────────────────
+// — MAIN APP —————————————————————–
 export default function App() {
 const [activeStep, setActiveStep] = useState(1);
 const [playing, setPlaying] = useState(false);
@@ -463,7 +463,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
 ```
   <div style={{ position: "relative", zIndex: 1, maxWidth: 960, margin: "0 auto", padding: "32px 20px 60px" }}>
 
-    {/* ── HEADER ── */}
+    {/* -- HEADER -- */}
     <div style={{ textAlign: "center", marginBottom: 40, animation: "fadeUp 0.6s ease both" }}>
       <div style={{
         display: "inline-flex", alignItems: "center", gap: 8,
@@ -487,7 +487,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
           background: "linear-gradient(90deg, #00e5ff, #a78bfa, #34d399)",
           WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
         }}>
-          Prompt → TEE → Base Sepolia → On-Chain Proof
+          Prompt -> TEE -> Base Sepolia -> On-Chain Proof
         </span>
       </h1>
 
@@ -500,7 +500,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
       </p>
     </div>
 
-    {/* ── PHASE BAR ── */}
+    {/* -- PHASE BAR -- */}
     <div style={{
       display: "flex", gap: 4, marginBottom: 28,
       background: "rgba(255,255,255,0.02)",
@@ -539,7 +539,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
       })}
     </div>
 
-    {/* ── STEP PIPELINE ── */}
+    {/* -- STEP PIPELINE -- */}
     <div style={{
       background: "rgba(255,255,255,0.02)",
       border: "1px solid rgba(255,255,255,0.06)",
@@ -579,7 +579,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
       </div>
     </div>
 
-    {/* ── MAIN CONTENT ── */}
+    {/* -- MAIN CONTENT -- */}
     <div style={{
       display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16,
       animation: "fadeUp 0.4s ease both",
@@ -650,7 +650,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
           </span>
           <div style={{ flex: 1, position: "relative" }}>
             <div style={{ height: 1, background: `linear-gradient(90deg, ${step.color}60, ${step.color}20)` }} />
-            <div style={{ position: "absolute", right: 0, top: "50%", transform: "translateY(-50%)", color: step.color, fontSize: 10 }}>▶</div>
+            <div style={{ position: "absolute", right: 0, top: "50%", transform: "translateY(-50%)", color: step.color, fontSize: 10 }}>></div>
           </div>
           <span style={{
             fontSize: 11, fontWeight: 700, color: "#8faac8",
@@ -684,7 +684,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
               transition: "all 0.2s",
             }}
           >
-            ← PREV
+            <- PREV
           </button>
           <button
             onClick={togglePlay}
@@ -699,7 +699,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
               boxShadow: playing ? `0 0 16px ${step.glow.replace("0.3","0.15")}` : "none",
             }}
           >
-            {playing ? "⏸ PAUSE" : "▶ AUTO-PLAY"}
+            {playing ? "|| PAUSE" : "> AUTO-PLAY"}
           </button>
           <button
             onClick={() => goToStep(Math.min(STEPS.length, activeStep + 1))}
@@ -714,7 +714,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
               transition: "all 0.2s",
             }}
           >
-            NEXT →
+            NEXT ->
           </button>
         </div>
       </div>
@@ -752,7 +752,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
         <div style={{ flex: 1 }}>
           {Object.entries(step.data).map(([k, v]) => (
             <DataRow key={k} k={k} v={String(v)} color={
-              v.includes("✓") ? "#34d399" :
+              v.includes("v") ? "#34d399" :
               v.startsWith("0x") ? step.color :
               v.includes("Sepolia") ? "#f59e0b" :
               v.includes("TEE") || v.includes("Intel") ? "#00e5ff" :
@@ -799,7 +799,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
       </div>
     </div>
 
-    {/* ── NETWORK DIAGRAM ── */}
+    {/* -- NETWORK DIAGRAM -- */}
     <div style={{
       background: "rgba(255,255,255,0.015)",
       border: "1px solid rgba(255,255,255,0.05)",
@@ -813,17 +813,17 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
       </div>
       <div style={{ display: "flex", gap: 0, alignItems: "center" }}>
         {[
-          { label: "Your App", icon: "◻", color: "#8faac8", sub: "Any language" },
-          { label: "→", color: "#2a3f55", connector: true },
-          { label: "OG Gateway", icon: "⬡", color: "#00e5ff", sub: "llm.opengradient.ai" },
-          { label: "→", color: "#2a3f55", connector: true },
-          { label: "TEE Node", icon: "◈", color: "#38bdf8", sub: "Intel TDX" },
-          { label: "→", color: "#2a3f55", connector: true },
-          { label: "LLM API", icon: "✦", color: "#a78bfa", sub: "GPT/Claude/Gemini" },
-          { label: "↕", color: "#2a3f55", connector: true, vertical: true },
-          { label: "Base Sepolia", icon: "⬡", color: "#f59e0b", sub: "$OPG Payment" },
-          { label: "↕", color: "#2a3f55", connector: true, vertical: true },
-          { label: "OG Chain", icon: "◎", color: "#34d399", sub: "Proof Settlement" },
+          { label: "Your App", icon: "[]", color: "#8faac8", sub: "Any language" },
+          { label: "->", color: "#2a3f55", connector: true },
+          { label: "OG Gateway", icon: "O", color: "#00e5ff", sub: "llm.opengradient.ai" },
+          { label: "->", color: "#2a3f55", connector: true },
+          { label: "TEE Node", icon: "*", color: "#38bdf8", sub: "Intel TDX" },
+          { label: "->", color: "#2a3f55", connector: true },
+          { label: "LLM API", icon: "*", color: "#a78bfa", sub: "GPT/Claude/Gemini" },
+          { label: "<->", color: "#2a3f55", connector: true, vertical: true },
+          { label: "Base Sepolia", icon: "O", color: "#f59e0b", sub: "$OPG Payment" },
+          { label: "<->", color: "#2a3f55", connector: true, vertical: true },
+          { label: "OG Chain", icon: "o", color: "#34d399", sub: "Proof Settlement" },
         ].map((n, i) => n.connector ? (
           <div key={i} style={{
             fontSize: n.vertical ? 16 : 12, color: "#1e3040",
@@ -847,7 +847,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
       </div>
     </div>
 
-    {/* ── QUICK LINKS ── */}
+    {/* -- QUICK LINKS -- */}
     <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
       {[
         { label: "x402 Docs", url: "https://docs.opengradient.ai/developers/x402/", color: "#a78bfa" },
@@ -872,7 +872,7 @@ borderRadius: “50%”, pointerEvents: “none”, zIndex: 0,
           onMouseEnter={(e) => { e.target.style.background = `${link.color}20`; e.target.style.borderColor = `${link.color}60`; }}
           onMouseLeave={(e) => { e.target.style.background = `${link.color}10`; e.target.style.borderColor = `${link.color}30`; }}
         >
-          ↗ {link.label}
+          -> {link.label}
         </a>
       ))}
     </div>
