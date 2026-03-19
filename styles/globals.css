@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  font-family: -apple-system, sans-serif;
+  background: #0d0d0d;
+  color: #fff;
+}
+
+.container {
+  max-width: 420px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  background: #161616;
+  padding: 16px;
+  border-radius: 12px;
+  margin-top: 15px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #222;
+  color: #fff;
+}
+
+h2 {
+  text-align: center;
+}
+
+.bar {
+  height: 20px;
+}
